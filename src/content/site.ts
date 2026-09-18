@@ -11,8 +11,7 @@ export const siteConfig = {
   title:
     "Digital Marketing Executive | SEO | Meta Ads | Social Media Marketing | WordPress",
   shortName: "Salina Magar",
-  // TODO: Set the production domain once deployed (used for canonical URLs and OG tags).
-  url: "https://example.com",
+  url: "https://salinamagar.com.np",
   description:
     "Digital Marketing professional with hands-on experience in social media marketing, paid advertising, content creation, and lead generation.",
   locale: "en_US",

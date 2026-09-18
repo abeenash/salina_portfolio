@@ -151,15 +151,35 @@ npm run start
 npm run lint
 ```
 
-## Deployment (Render)
+## Deployment (Vercel)
+
+Live at **https://salina-magar-silk.vercel.app**, with the custom domain
+**salinamagar.com.np** pointed at it.
+
+1. Import the repository into Vercel (framework preset: Next.js — detected
+   automatically).
+2. Set environment variables in the Vercel project's **Settings →
+   Environment Variables**: `DATABASE_URL` and `DATABASE_URL_UNPOOLED`.
+   Never put secrets in the repo or in `README.md`.
+3. If using the database for any project category, run `npm run db:migrate`
+   locally (or from a one-off script) against `DATABASE_URL_UNPOOLED` — Vercel
+   doesn't run migrations for you on deploy.
+4. Custom domain: **Settings → Domains** → add `salinamagar.com.np`, then
+   point the registrar's DNS at Vercel (an `A` record on `@` to
+   `76.76.21.21`, and a `CNAME` on `www` to `cname.vercel-dns.com` — Vercel
+   shows the exact current values once the domain is added). SSL is issued
+   automatically once DNS verifies.
+5. `src/content/site.ts`'s `url` should match whichever domain is canonical
+   (currently set to `https://salinamagar.com.np`) — it drives canonical
+   links, the sitemap, and Open Graph tags.
+
+### Deployment (Render) — alternative
+
+The app also runs as a plain Node.js web service with no Vercel-specific
+code, so Render works too if you switch later:
 
 1. Create a Render **Web Service** from this repository.
 2. Build command: `npm run build`. Start command: `npm run start`.
-3. Set environment variables in the Render dashboard: `DATABASE_URL` and
-   `DATABASE_URL_UNPOOLED` (only needed once you want database-managed
-   projects). Never put secrets in the repo or in `README.md`.
-4. If using the database for any project category, run `npm run db:migrate`
-   (locally or as a one-off Render job) against `DATABASE_URL_UNPOOLED`
-   before or after the first deploy to create the schema.
-5. The app has no persistent local filesystem assumptions at runtime — all
+3. Same environment variables as above, set in the Render dashboard.
+4. The app has no persistent local filesystem assumptions at runtime — all
    project images ship in `public/` at build time.

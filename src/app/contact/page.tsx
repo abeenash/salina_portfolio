@@ -65,11 +65,11 @@ export default function ContactPage() {
           ))}
         </ul>
 
-        {hasMissingChannels && (
+        {/* {hasMissingChannels && (
           <p className="mt-8 max-w-md text-sm text-ink-muted">
             TODO: Add verified Instagram and/or Facebook links once supplied.
           </p>
-        )}
+        )} */}
       </Container>
     </section>
   );
